@@ -90,12 +90,13 @@
     <div class="flex flex-col md:flex-row w-screen h-screen overflow-hidden">
         
         <!-- RIGHT PANEL (3D SCENE) -->
-        <div class="order-1 md:order-2 w-full h-[55%] md:h-full md:flex-1 relative bg-[#f0f2f5] overflow-hidden z-10">
+        <!-- Mobile: Top 55%. Desktop: Flex-grow to fill space (approx 66%) -->
+        <div class="order-1 md:order-2 w-full h-[55%] md:h-full md:flex-1 relative bg-[#f0f2f5] overflow-hidden z-10 shrink-0">
             <div id="canvas-container" class="w-full h-full cursor-move"></div>
             
             <!-- Overlay Label -->
-            <div class="absolute bottom-6 w-full pointer-events-none flex justify-center">
-                <div id="viz-label" class="glass-panel px-6 py-3 rounded-2xl text-slate-600 text-xs md:text-sm font-medium tracking-wide shadow-2xl transition-all transform hover:scale-105 duration-500 text-center mx-4">
+            <div class="absolute bottom-4 md:bottom-12 w-full pointer-events-none flex justify-center">
+                <div id="viz-label" class="glass-panel px-4 py-2 md:px-8 md:py-4 rounded-2xl text-slate-600 text-xs md:text-sm font-medium tracking-wide shadow-2xl transition-all transform hover:scale-105 duration-500 text-center mx-4">
                     Schematic Visualization
                 </div>
             </div>
@@ -105,10 +106,11 @@
         </div>
 
         <!-- LEFT PANEL (TEXT CONTENT) -->
-        <div class="order-2 md:order-1 w-full md:w-1/3 md:min-w-[450px] h-[45%] md:h-full bg-white/95 border-t md:border-t-0 md:border-r border-slate-200 z-20 flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.1)] md:shadow-2xl relative rounded-t-3xl md:rounded-none">
+        <!-- Mobile: Grows to fill bottom (flex-1). Desktop: Fixed width (w-1/3 or min-450px), NO flex growth. -->
+        <div class="order-2 md:order-1 w-full md:w-1/3 md:min-w-[450px] md:max-w-[500px] flex-1 md:flex-none md:h-full bg-white/95 border-t md:border-t-0 md:border-r border-slate-200 z-20 flex flex-col shadow-[0_-10px_40px_rgba(0,0,0,0.1)] md:shadow-2xl relative rounded-t-3xl md:rounded-none overflow-y-auto md:overflow-hidden">
             
             <!-- Header -->
-            <div class="p-5 md:p-8 border-b border-slate-100 bg-slate-50/50 header-group relative group rounded-t-3xl md:rounded-none" id="main-header">
+            <div class="p-5 md:p-8 border-b border-slate-100 bg-slate-50/50 header-group relative group rounded-t-3xl md:rounded-none shrink-0" id="main-header">
                 <h1 class="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight flex items-baseline flex-wrap select-none cursor-pointer" onclick="toggleLegend()">
                     <span>COS</span>
                     <span class="acronym-container mx-0.5">
@@ -176,9 +178,8 @@
             </div>
 
             <!-- Content -->
-            <!-- FIX: Removed 'justify-center'. Added 'my-auto' to child for safe vertical centering. -->
-            <div id="content-area" class="flex-1 p-5 md:p-8 overflow-y-auto flex flex-col bg-white">
-                <div id="slide-content" class="fade-active w-full my-auto">
+            <div id="content-area" class="p-5 md:p-8 flex flex-col justify-center bg-white md:flex-1 md:overflow-y-auto">
+                <div id="slide-content" class="fade-active w-full md:my-auto">
                     <div id="step-indicator" class="inline-block px-3 py-1 mb-3 md:mb-5 text-[10px] font-bold tracking-widest text-orange-600 uppercase bg-orange-50 rounded-full border border-orange-100">
                         Concept 1 / 7
                     </div>
@@ -235,7 +236,7 @@
             </div>
 
             <!-- Footer -->
-            <div class="p-4 md:p-6 border-t border-slate-100 bg-white flex justify-between items-center">
+            <div class="p-4 md:p-6 border-t border-slate-100 bg-white flex justify-between items-center shrink-0">
                 <button id="prev-btn" class="px-4 md:px-5 py-2 md:py-2.5 rounded-lg text-xs md:text-sm font-medium text-slate-500 hover:bg-slate-50 transition-colors disabled:opacity-30 disabled:cursor-not-allowed">
                     Back
                 </button>
